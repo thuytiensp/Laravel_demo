@@ -20,7 +20,11 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<p><strong>Learning Laravel</strong><a href="{{ route('admin.edit', ['id' => 1]) }}"> Edit</a></p>
+
+		@foreach($posts as $post)
+		<p><strong>{{ $post['title']}}</strong><a href="{{ route('admin.edit', ['id' => array_search($post, $posts)]) }}"> Edit</a></p>
+		@endforeach
+
 	</div>
 </div>
 @endsection
