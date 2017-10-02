@@ -14,9 +14,23 @@
 Route::get('/', function () {
     return view('blog.index');
 })->name('blog.index');
-Route::get('post/{id}', function () {
-    return view('blog.post');
+
+Route::get('post/{id}', function ($id) {
+   if($id == 1)
+	{
+		$post = [
+				'title' => 'Learning Laravel',
+				'content' => 'This blog post will get you right on track with Laravel'
+		];
+	}else{
+		$post = [
+						'title' => 'Something else',
+						'content' => 'Some other content'
+				];
+	}
+    return view('blog.post', ['post' => $post]);
 })->name('blog.post');
+
 
 Route::get('about', function () {
     return view('other.about');
@@ -34,10 +48,22 @@ Route::group(['prefix' => 'admin'], function() {
         return "It works!";
     })->name('admin.create');
 
-    Route::get('edit/{id}', function () {
-        return view('admin.edit');
+    Route::get('edit/{id}', function ($id) {
+    	if($id == 1)
+		{
+			$post = [
+					'title' => 'Learning Laravel',
+					'content' => 'This blog post will get you right on track with Laravel'
+			];
+		}else{
+			$post = [
+							'title' => 'Something else',
+							'content' => 'Some other content'
+					];
+		}
+      return view('admin.edit', ['post' => $post]);
     })->name('admin.edit');
-    
+
     Route::post('edit', function() {
         return "It works!";
     })->name('admin.update');
