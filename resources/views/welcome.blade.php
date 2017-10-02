@@ -11,10 +11,14 @@
             @endif
 
             <hr>
-            
+
             @for($i = 0; $i < 5; $i++)
                 <p>{{$i + 1}} Iteration</p>
             @endfor
+
+            {{ "<script>alert('Demo XSS')</script>" }}
+
+            {!! "<script>alert('Hello XSS')</script>" !!}
     </div>
 </div>
 
